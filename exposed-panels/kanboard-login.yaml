@@ -1,0 +1,24 @@
+id: kanboard-login
+
+info:
+  name: Kanboard Login Page
+  author: thecyberneh
+  severity: low
+  tags: kanboard,login
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/kanboard/?controller=AuthController&action=check"
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "Remember Me"
+          
+      - type: status
+        status:
+          - 200
+
+#check With Default Credentias admin:admin
