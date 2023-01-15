@@ -1,0 +1,25 @@
+id: "Cacti-1-2-19"
+
+info:
+  name: Cacti-1.2.19 detection for CVE-2022-46169 
+  author: thecyberneh
+  severity: low
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+
+      - type: status
+        status:
+          - 200
+
+      - type: word
+        words:
+          - "Cacti 1.2.19"
+        part: body
+        
+
