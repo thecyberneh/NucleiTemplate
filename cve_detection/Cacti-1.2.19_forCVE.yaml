@@ -19,7 +19,12 @@ requests:
 
       - type: word
         words:
-          - "Cacti 1.2.19"
-        part: body
+          - "Login to Cacti"
+        part: response
+
+      - type: word
+        words:
+          - "Version 1.2.19"
+        part: response
         
 
