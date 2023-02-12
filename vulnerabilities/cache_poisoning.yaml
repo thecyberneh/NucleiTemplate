@@ -1,0 +1,26 @@
+id: cache-poisoning    
+
+info:
+  name: Web Cache Poisoning
+  author: thecyberneh
+  severity: low
+
+requests:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        X-Forwarded-Prefix: sub.domain.com
+        X-Forwarded-Host: sub.domain.com
+        X-Forwarded-For: sub.domain.com
+        X-Originating-IP: sub.domain.com
+        X-Remote-IP: sub.domain.com
+        X-Remote-Addr: sub.domain.com
+        X-Client-IP: sub.domain.com
+      - |
+        GET / HTTP/1.1
+
+    req-condition: true
+    matchers:
+      - type: dsl
+        dsl:
+          - 'contains(body_2, "sub.domain.com") == true'
