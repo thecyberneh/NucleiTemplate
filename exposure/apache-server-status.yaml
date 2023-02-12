@@ -1,0 +1,24 @@
+id: apache-server-status
+
+info:
+  name: Apache Server Status File
+  author: thecyberneh
+  severity: low
+  tags: logs
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/server-status"
+
+    matchers-condition: and
+    matchers:
+      
+      - type: word
+        words:
+          - "Apache Server Status"
+        part: body
+
+      - type: status
+        status:
+          - 200
