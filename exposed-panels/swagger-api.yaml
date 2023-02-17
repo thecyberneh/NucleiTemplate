@@ -1,0 +1,23 @@
+id: swagger-api
+
+info:
+  name: Swagger API
+  author: thecyberneh
+  reference:
+     - Swagger UI || Try for XSS
+     - https://www.vidocsecurity.com/blog/hacking-swagger-ui-from-xss-to-account-takeovers/
+     - https://hackerone.com/reports/1444682
+  severity: low
+  tags: tech,swagger,api
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/classicapi/doc/"
+
+    matchers-condition: and
+    matchers:
+     - type: status
+       status:
+         - 200
+      
