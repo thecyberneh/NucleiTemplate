@@ -1,0 +1,24 @@
+id: splunk-information-disclosure
+
+info:
+  name: Splunk Info Disclosure
+  author: thecyberneh
+  severity: low
+  tags: logs
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/en-US/splunkd/__raw/services/server/info/server-info?output_mode=json"
+
+    matchers-condition: and
+    matchers:
+      
+      - type: word
+        words:
+          - "staticAssetId"
+        part: body
+
+      - type: status
+        status:
+          - 200
