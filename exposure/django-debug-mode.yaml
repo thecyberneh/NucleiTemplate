@@ -1,0 +1,30 @@
+id: django-debug-mode
+
+info:
+  name: Django Debug Mode Info Disclosure
+  author: thecyberneh
+  description: "Internal information disclosure in Django because of enabled debug mode"
+  severity: low
+  tags: logs
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      
+      - type: word
+        words:
+          - "traceback"
+        part: body
+
+      - type: word
+        words:
+          - "DisallowedHost"
+        part: body
+
+      - type: status
+        status:
+          - 400
